@@ -1,3 +1,9 @@
+/*
+// In Class 08
+// Sharan Girdhani     - 800960333
+// Salman Mujtaba   - 800969897
+*/
+
 package com.example.salman.inclass08;
 
 import android.os.AsyncTask;
@@ -45,6 +51,8 @@ public class GetRecipeAsyncTask extends AsyncTask<RequestParams, Integer, ArrayL
     protected ArrayList<Recipe> doInBackground(RequestParams... param) {
         BufferedReader reader = null;
         try {
+            String url = param[0].getEncodedUrl();
+
             HttpURLConnection con = param[0].setupConnection();
             con.connect();
             int statusCode = con.getResponseCode();
@@ -82,11 +90,11 @@ public class GetRecipeAsyncTask extends AsyncTask<RequestParams, Integer, ArrayL
     @Override
     protected void onPostExecute(ArrayList<Recipe> result) {
         super.onPostExecute(result);
+        activity.updateData(result);
     }
 
     static public interface IData{
         void updateData(ArrayList<Recipe> recipeList);
-//        void enableView();
     }
 
 }

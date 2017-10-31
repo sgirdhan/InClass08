@@ -1,11 +1,8 @@
-// In Class 05
-// ContactListActivity.java
+/*
+// In Class 08
 // Sharan Girdhani     - 800960333
 // Salman Mujtaba   - 800969897
-//
-// In Class 06
-// Salman Mujtaba   - 800969897
-//
+*/
 
 package com.example.salman.inclass08;
 
@@ -14,16 +11,16 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 
-public class Recipe implements Serializable{
+
+public class Recipe implements Serializable {
     private String title, url, ingredients, thumbnail;
 
-    public static Recipe createRecipe(JSONObject js) throws JSONException {
-        Recipe re = new Recipe();
-        re.setTitle(js.getString("title"));
-        re.setUrl(js.getString("href"));
-        re.setIngredients(js.getString("ingredients"));
+    public String getThumbnail() {
+        return thumbnail;
+    }
 
-        return re;
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public String getTitle() {
@@ -50,11 +47,21 @@ public class Recipe implements Serializable{
         this.ingredients = ingredients;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
+    public static Recipe createRecipe(JSONObject js) throws JSONException {
+        Recipe re = new Recipe();
+        re.setTitle(js.getString("title"));
+        re.setUrl(js.getString("href"));
+        re.setIngredients(js.getString("ingredients"));
+        re.setThumbnail(js.getString("thumbnail"));
+        return re;
     }
 
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                ", ingredients='" + ingredients + '\'' +
+                '}';
     }
 }

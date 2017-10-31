@@ -1,3 +1,9 @@
+/*
+// In Class 08
+// Sharan Girdhani     - 800960333
+// Salman Mujtaba   - 800969897
+*/
+
 package com.example.salman.inclass08;
 
 import android.content.Context;
@@ -8,12 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -122,8 +123,6 @@ public class RecipePuppyAdapter extends RecyclerView.Adapter<RecipePuppyAdapter.
 
     interface IMusicAdapter
     {
-        void goToDetailsFragment(int position);
-        void addRow();
         void setAdapterAndNotify();
     }
 }

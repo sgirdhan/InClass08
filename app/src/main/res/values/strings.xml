@@ -13,8 +13,9 @@
     <string name="button_finish">Finish</string>
     <string name="text_view_word_frquencies" />
     <string name="dish"></string>
-    <string name="add">Add Ingredients</string>
+    <string name="add">Add Ingredients:</string>
     <string name="nothing_found">No instances found</string>
+
     <string name="finish">Finish</string>
     <string name="titleLabel">Title : </string>
     <string name="title"></string>

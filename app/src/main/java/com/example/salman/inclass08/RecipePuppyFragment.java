@@ -1,3 +1,9 @@
+/*
+// In Class 08
+// Sharan Girdhani     - 800960333
+// Salman Mujtaba   - 800969897
+*/
+
 package com.example.salman.inclass08;
 
 import android.content.Context;
@@ -37,6 +43,7 @@ public class RecipePuppyFragment extends Fragment implements RecipePuppyAdapter.
     int count = 0;
     ArrayList<Integer> countList;
     EditText edtDish;
+    TextView ingredientPermenent;
     View view;
 
     public RecipePuppyFragment() {
@@ -63,7 +70,7 @@ public class RecipePuppyFragment extends Fragment implements RecipePuppyAdapter.
         recipeMenu = new ArrayList<>();
         view =  inflater.inflate(R.layout.fragment_recipe_puppy, container, false);
 //
-        final TextView ingredientPermenent = (TextView) view.findViewById(R.id.editTextMenuPermanent);
+        ingredientPermenent = (TextView) view.findViewById(R.id.editTextMenuPermanent);
         edtDish = (EditText) view.findViewById(R.id.editTextDish);
 
 //        RecipeMenu r = new RecipeMenu();
@@ -94,21 +101,20 @@ public class RecipePuppyFragment extends Fragment implements RecipePuppyAdapter.
         view.findViewById(R.id.buttonSearch).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(edtDish.getText().toString().trim().equals("") ||
-                        edtDish.getText().toString().trim().isEmpty()){
+                if(edtDish.getText().toString().trim().equals("") || edtDish.getText().toString().trim().isEmpty()){
                     Toast.makeText(getContext(),"Please enter the Dish",Toast.LENGTH_LONG).show();
-
+                }
+                else if(recipeMenu.size() == 0) {
+                    Toast.makeText(getContext(),"Please add at least 1 ingredient",Toast.LENGTH_LONG).show();
                 }
                 else{
                     RequestParams req = new RequestParams("GET", BASE_URL);
                     String ing = TextUtils.join(",", recipeMenu);
-                    req.addParam("format", "xml");
                     req.addParam("i", ing);
                     req.addParam("q", edtDish.getText().toString().trim());
                     mListener.setUpRequestParam(req);
 
                 }
-
             }
         });
 
@@ -116,6 +122,13 @@ public class RecipePuppyFragment extends Fragment implements RecipePuppyAdapter.
         // Inflate the layout for this fragment
         return view;
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        edtDish.setText("");
+        ingredientPermenent.setText("");
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -128,8 +141,6 @@ public class RecipePuppyFragment extends Fragment implements RecipePuppyAdapter.
     @Override
     public void setAdapterAndNotify(){
         contactListAdapterRecyclerVIew = new RecipePuppyAdapter(recipeMenu, getContext(), new RecipePuppyFragment());
-//        public ContactListAdapterRecyclerVIew(ArrayList<Contact> contacts, Context context, int resource,IMusicAdapter iMusicAdapter ) {
-
         RecyclerView contactsList = ((RecyclerView) getView().findViewById(R.id.recyelerViewMenu));
         contactsList.setAdapter(contactListAdapterRecyclerVIew);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -152,20 +163,6 @@ public class RecipePuppyFragment extends Fragment implements RecipePuppyAdapter.
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void goToDetailsFragment(int position) {
-
-    }
-
-    @Override
-    public void addRow() {
-        if(count!=5){
-
-            count++;
-        }
-//        setAdapterAndNotify(view);
     }
 
     public interface OnFragmentInteractionListener {

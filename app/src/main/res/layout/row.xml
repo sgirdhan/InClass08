@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="20dp"
+    android:orientation="vertical">
 
 
     <ImageButton
@@ -12,17 +15,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="26dp"
+        android:background="@null"
         app:srcCompat="@drawable/remove" />
 
     <EditText
         android:id="@+id/editTextMenuDynamic"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageButton2"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="35dp"
-        android:layout_toStartOf="@+id/imageButton2"
+        android:layout_alignBottom="@+id/imageButtonDynamic"
+        android:layout_toStartOf="@+id/imageButtonDynamic"
         android:ems="10"
         android:inputType="textPersonName" />
 </RelativeLayout>
